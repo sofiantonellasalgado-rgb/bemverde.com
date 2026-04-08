@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bem Verde Césped — Venta Mayorista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #3a8c2f;
+  --verde-dark: #256020;
+  --verde-light: #e8f5e3;
+  --verde-mid: #72b85a;
+  --rojo: #c0392b;
+  --rojo-light: #fdf0ef;
+  --crema: #faf8f3;
+  --negro: #1a1a18;
+  --gris: #666660;
+  --gris-light: #f0ede6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--crema);
+  color: var(--negro);
+  overflow-x: hidden;
+}
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+  height: 70px;
+  background: rgba(250,248,243,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(58,140,47,0.12);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+
+.logo-circle {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--verde-light);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(58,140,47,0.15);
+}
+
+.logo-svg { width: 38px; height: 38px; }
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--verde-dark);
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex; gap: 2rem; list-style: none;
+}
+
+.nav-links a {
+  font-size: 14px; font-weight: 400; color: var(--gris);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--verde); }
+
+.nav-cta {
+  background: var(--verde); color: #fff;
+  padding: 10px 22px; border-radius: 6px;
+  font-size: 14px; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.1s;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-cta:hover { background: var(--verde-dark); transform: translateY(-1px); }
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding-top: 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: var(--crema);
+  z-index: 0;
+}
+
+.hero-pattern {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 50%;
+  background: var(--verde-light);
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
+}
+
+.hero-left {
+  padding: 4rem 3rem 4rem 4rem;
+  position: relative; z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--verde-light);
+  color: var(--verde-dark);
+  font-size: 12px; font-weight: 500;
+  padding: 6px 14px; border-radius: 20px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid rgba(58,140,47,0.2);
+}
+
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--verde);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; transform: scale(1); }
+  50% { opacity:0.5; transform: scale(0.8); }
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px; font-weight: 700;
+  line-height: 1.1;
+  color: var(--negro);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 .accent { color: var(--verde); }
+.hero h1 .line2 { display: block; }
+
+.hero-desc {
+  font-size: 17px; color: var(--gris);
+  line-height: 1.7; max-width: 440px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+
+.btn-main {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--verde); color: #fff;
+  padding: 14px 28px; border-radius: 8px;
+  font-size: 15px; font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(58,140,47,0.3);
+}
+.btn-main:hover { background: var(--verde-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,140,47,0.4); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--negro);
+  padding: 14px 24px; border-radius: 8px;
+  font-size: 15px; font-weight: 400;
+  text-decoration: none; border: 1.5px solid rgba(0,0,0,0.15);
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--verde); color: var(--verde); }
+
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 4rem 3rem;
+  gap: 1.5rem;
+}
+
+.hero-logo-big {
+  width: 200px; height: 200px; border-radius: 50%;
+  background: #fff;
+  border: 3px solid rgba(58,140,47,0.15);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 48px rgba(58,140,47,0.2);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.hero-stats {
+  display: flex; gap: 1rem;
+}
+
+.hero-stat {
+  background: #fff; border-radius: 12px;
+  padding: 1rem 1.25rem; text-align: center;
+  border: 1px solid rgba(58,140,47,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  min-width: 90px;
+}
+.hero-stat-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--verde-dark); }
+.hero-stat-label { font-size: 11px; color: var(--gris); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ---- MAYORISTA STRIP ---- */
+.mayorista-strip {
+  background: var(--verde-dark);
+  color: #fff;
+  padding: 2rem 4rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.mayorista-strip h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+}
+
+.mayorista-strip p {
+  font-size: 15px; opacity: 0.8; max-width: 420px; line-height: 1.6;
+}
+
+.strip-tag {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 12px; font-weight: 500;
+  padding: 6px 16px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* ---- PRODUCTOS ---- */
+.productos {
+  padding: 6rem 4rem;
+  background: #fff;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-eyebrow {
+  font-size: 12px; font-weight: 500; color: var(--verde);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px; font-weight: 700;
+  color: var(--negro); letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section-sub {
+  font-size: 16px; color: var(--gris);
+  margin-top: 0.75rem; line-height: 1.7;
+  max-width: 500px;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.producto-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  transition: all 0.25s;
+  background: var(--crema);
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+  border-color: rgba(58,140,47,0.2);
+}
+
+.producto-visual {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.producto-visual.v1 { background: linear-gradient(135deg, #c8e6c0 0%, #81c784 100%); }
+.producto-visual.v2 { background: linear-gradient(135deg, #dcedc8 0%, #aed581 100%); }
+.producto-visual.v3 { background: linear-gradient(135deg, #e8f5e9 0%, #66bb6a 100%); }
+
+.producto-icon {
+  width: 64px; height: 64px; opacity: 0.6;
+}
+
+.producto-tag {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--verde-dark); color: #fff;
+  font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.producto-body { padding: 1.25rem; }
+.producto-body h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+.producto-body p { font-size: 14px; color: var(--gris); line-height: 1.6; }
+
+.producto-footer {
+  padding: 0 1.25rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.producto-detalle {
+  font-size: 13px; color: var(--verde); font-weight: 500;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* ---- POR QUÉ MAYORISTA ---- */
+.porque {
+  padding: 6rem 4rem;
+  background: var(--crema);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+
+.porque-content {}
+
+.porque-items {
+  display: flex; flex-direction: column; gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.porque-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.25rem;
+  background: #fff; border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: border-color 0.2s;
+}
+.porque-item:hover { border-color: rgba(58,140,47,0.25); }
+
+.porque-num {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--verde-light); color: var(--verde-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.porque-item h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+.porque-item p { font-size: 14px; color: var(--gris); line-height: 1.6; }
+
+.porque-visual {
+  background: var(--verde-light);
+  border-radius: 20px;
+  min-height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.porque-big-logo {
+  width: 240px; height: 240px; border-radius: 50%;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 40px rgba(58,140,47,0.2);
+}
+
+.porque-deco1 {
+  position: absolute; top: -30px; right: -30px;
+  width: 140px; height: 140px; border-radius: 50%;
+  background: rgba(58,140,47,0.12);
+}
+
+.porque-deco2 {
+  position: absolute; bottom: -20px; left: -20px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(192,57,43,0.08);
+}
+
+/* ---- GALERÍA ---- */
+.galeria {
+  padding: 6rem 4rem;
+  background: #fff;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 12px;
+  margin-top: 2.5rem;
+}
+
+.gal-item {
+  border-radius: 12px; overflow: hidden;
+  position: relative; cursor: pointer;
+  transition: transform 0.2s;
+}
+.gal-item:hover { transform: scale(1.01); }
+.gal-item:hover .gal-overlay { opacity: 1; }
+
+.gal-item.big { grid-row: span 2; }
+
+.gal-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.gal-bg.g1 { background: linear-gradient(135deg, #2d6a22, #72b85a); }
+.gal-bg.g2 { background: linear-gradient(135deg, #97c459, #c0dd97); }
+.gal-bg.g3 { background: linear-gradient(135deg, #56a042, #2d6a22); }
+.gal-bg.g4 { background: linear-gradient(135deg, #b5d96e, #72b85a); }
+.gal-bg.g5 { background: linear-gradient(135deg, #3d8c30, #97c459); }
+
+.gal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(20,60,10,0.55);
+  display: flex; align-items: flex-end;
+  padding: 1rem; opacity: 0; transition: opacity 0.2s;
+  border-radius: 12px;
+}
+
+.gal-label {
+  color: #fff; font-size: 13px; font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.gal-grass-icon { opacity: 0.3; }
+
+/* ---- CONTACTO ---- */
+.contacto {
+  padding: 6rem 4rem;
+  background: var(--negro);
+  position: relative; overflow: hidden;
+}
+
+.contacto-bg-deco {
+  position: absolute;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: rgba(58,140,47,0.06);
+  top: -200px; right: -200px;
+  pointer-events: none;
+}
+
+.contacto-inner {
+  max-width: 720px; margin: 0 auto; text-align: center;
+  position: relative; z-index: 2;
+}
+
+.contacto .section-eyebrow { color: var(--verde-mid); }
+
+.contacto .section-title { color: #fff; }
+.contacto .section-sub { color: rgba(255,255,255,0.55); max-width: 100%; }
+
+.contacto-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin: 3rem 0;
+}
+
+.contacto-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+.contacto-card:hover { border-color: rgba(58,140,47,0.4); }
+
+.cc-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(58,140,47,0.15);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.contacto-card h4 { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 6px; }
+.contacto-card p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+.wa-big {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #25D366; color: #fff;
+  padding: 16px 36px; border-radius: 10px;
+  font-size: 17px; font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.3);
+}
+.wa-big:hover { background: #1ebe5c; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(37,211,102,0.4); }
+
+/* ---- FOOTER ---- */
+footer {
+  background: #111;
+  padding: 2rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; color: rgba(255,255,255,0.7);
+}
+
+footer p {
+  font-size: 13px; color: rgba(255,255,255,0.3);
+}
+
+.footer-ig {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-ig:hover { color: var(--verde-mid); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .porque { grid-template-columns: 1fr; }
+  .porque-visual { min-height: 220px; }
+  .productos-grid { grid-template-columns: 1fr 1fr; }
+  .contacto-cards { grid-template-columns: 1fr; }
+  .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-item.big { grid-row: auto; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hero-left { padding: 3rem 1.5rem; }
+  .hero h1 { font-size: 38px; }
+  .mayorista-strip, .productos, .porque, .galeria, .contacto { padding: 4rem 1.5rem; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-circle">
+      <svg class="logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+        <!-- hojas verdes -->
+        <path d="M40 20 Q60 28 60 40 Q60 55 40 62 Q20 55 20 40 Q20 28 40 20Z" fill="none"/>
+        <path d="M15 30 Q30 12 50 18 Q35 20 32 36Z" fill="#3a8c2f"/>
+        <path d="M65 30 Q50 12 30 18 Q45 20 48 36Z" fill="#3a8c2f"/>
+        <!-- texto rojo -->
+        <text x="40" y="50" text-anchor="middle" font-family="serif" font-size="14" font-style="italic" fill="#c0392b" font-weight="bold">Bemverde</text>
+      </svg>
+    </div>
+    <span class="logo-text">Bem Verde</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#mayorista">Mayorista</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5491154528306?text=Hola!%20Quiero%20consultar%20por%20c%C3%A9sped%20en%20panes" class="nav-cta" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Consultar ahora
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Venta mayorista · GBA y alrededores
+    </div>
+    <h1>
+      Césped natural<br>
+      <span class="accent">en panes,</span>
+      <span class="line2">a granel.</span>
+    </h1>
+    <p class="hero-desc">
+      Somos especialistas en la venta de césped natural en panes para jardines, clubes, parques y desarrollos urbanos. Precios mayoristas, stock permanente.
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5491154528306?text=Hola!%20Quiero%20consultar%20precios%20mayoristas%20de%20c%C3%A9sped" class="btn-main" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar precios
+      </a>
+      <a href="#galeria" class="btn-outline">Ver trabajos →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-logo-big">
+      <svg width="160" height="160" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" fill="#fff"/>
+        <path d="M15 30 Q30 12 50 18 Q35 20 32 36Z" fill="#3a8c2f"/>
+        <path d="M65 30 Q50 12 30 18 Q45 20 48 36Z" fill="#3a8c2f"/>
+        <text x="40" y="52" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-style="italic" fill="#c0392b" font-weight="bold">Bemverde</text>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">+500</div>
+        <div class="hero-stat-label">Proyectos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">24hs</div>
+        <div class="hero-stat-label">Entrega</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Natural</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP MAYORISTA -->
+<div class="mayorista-strip" id="mayorista">
+  <div>
+    <h2>Venta mayorista de césped</h2>
+    <p>Atendemos paisajistas, viveros, constructoras y empresas de jardinería. Precios por volumen y stock disponible todo el año.</p>
+  </div>
+  <div class="strip-tag">Consultar precios por m²</div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="section-header">
+    <p class="section-eyebrow">Nuestro producto</p>
+    <h2 class="section-title">Césped natural<br>en panes</h2>
+    <p class="section-sub">Producido y comercializado con altos estándares de calidad para todo tipo de aplicación.</p>
+  </div>
+  <div class="productos-grid">
+    <div class="producto-card">
+      <div class="producto-visual v1">
+        <div class="producto-tag">Mayor demanda</div>
+        <svg class="producto-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2">
+          <path d="M8 52 Q20 20 32 30 Q44 16 56 28"/>
+          <path d="M8 44 Q20 28 32 36 Q44 22 56 34"/>
+        </svg>
+      </div>
+      <div class="producto-body">
+        <h3>Bermuda / Tifway</h3>
+        <p>Ideal para jardines y canchas. Alta resistencia al pisoteo y al sol. Excelente recuperación.</p>
+      </div>
+      <div class="producto-footer">
+        <a href="https://wa.me/5491154528306?text=Consulta%20Bermuda%20Tifway" class="producto-detalle" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+    <div class="producto-card">
+      <div class="producto-visual v2">
+        <div class="producto-tag">Popular</div>
+        <svg class="producto-icon" viewBox="0 0 64 64" fill="none" stroke="#2d6a22" stroke-width="2">
+          <rect x="12" y="12" width="40" height="40" rx="4"/>
+          <line x1="12" y1="26" x2="52" y2="26"/>
+          <line x1="12" y1="40" x2="52" y2="40"/>
+          <line x1="26" y1="12" x2="26" y2="52"/>
+          <line x1="40" y1="12" x2="40" y2="52"/>
+        </svg>
+      </div>
+      <div class="producto-body">
+        <h3>Grama Bahiana</h3>
+        <p>Césped rústico, de bajo mantenimiento. Perfecto para grandes superficies y espacios públicos.</p>
+      </div>
+      <div class="producto-footer">
+        <a href="https://wa.me/5491154528306?text=Consulta%20Grama%20Bahiana" class="producto-detalle" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+    <div class="producto-card">
+      <div class="producto-visual v3">
+        <svg class="producto-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2">
+          <circle cx="32" cy="32" r="20"/>
+          <path d="M20 44 Q32 20 44 44"/>
+          <line x1="32" y1="16" x2="32" y2="48"/>
+        </svg>
+      </div>
+      <div class="producto-body">
+        <h3>Blend 365</h3>
+        <p>Mezcla premium de alta densidad. Verde intenso y uniforme durante todo el año.</p>
+      </div>
+      <div class="producto-footer">
+        <a href="https://wa.me/5491154528306?text=Consulta%20Blend%20365" class="producto-detalle" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ BEM VERDE -->
+<section class="porque" id="mayorista2">
+  <div class="porque-content">
+    <p class="section-eyebrow">Por qué elegirnos</p>
+    <h2 class="section-title">Especialistas<br>en cespedu.</h2>
+    <div class="porque-items">
+      <div class="porque-item">
+        <div class="porque-num">01</div>
+        <div>
+          <h4>Stock permanente</h4>
+          <p>Contamos con producción constante para abastecer pedidos grandes sin esperas.</p>
+        </div>
+      </div>
+      <div class="porque-item">
+        <div class="porque-num">02</div>
+        <div>
+          <h4>Precios mayoristas reales</h4>
+          <p>Trabajamos directamente con paisajistas y empresas. Sin intermediarios, precio justo.</p>
+        </div>
+      </div>
+      <div class="porque-item">
+        <div class="porque-num">03</div>
+        <div>
+          <h4>Asesoramiento sin cargo</h4>
+          <p>Te ayudamos a elegir la variedad correcta según el uso y las condiciones del lugar.</p>
+        </div>
+      </div>
+      <div class="porque-item">
+        <div class="porque-num">04</div>
+        <div>
+          <h4>Entrega en GBA y alrededores</h4>
+          <p>Coordinamos el flete para que el césped llegue fresco y en perfecto estado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="porque-visual">
+    <div class="porque-deco1"></div>
+    <div class="porque-deco2"></div>
+    <div class="porque-big-logo">
+      <svg width="180" height="180" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" fill="#fff"/>
+        <path d="M15 30 Q30 12 50 18 Q35 20 32 36Z" fill="#3a8c2f"/>
+        <path d="M65 30 Q50 12 30 18 Q45 20 48 36Z" fill="#3a8c2f"/>
+        <text x="40" y="52" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-style="italic" fill="#c0392b" font-weight="bold">Bemverde</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="galeria" id="galeria">
+  <div class="section-header">
+    <p class="section-eyebrow">Trabajos realizados</p>
+    <h2 class="section-title">Galería</h2>
+    <p class="section-sub">Jardines, parques y canchas que transformamos con césped natural.</p>
+  </div>
+  <div class="galeria-grid">
+    <div class="gal-item big">
+      <div class="gal-bg g1" style="height:100%">
+        <svg class="gal-grass-icon" width="80" height="80" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="1.5"><path d="M8 52 Q20 20 32 30 Q44 16 56 28"/><path d="M8 44 Q20 28 32 36 Q44 22 56 34"/></svg>
+      </div>
+      <div class="gal-overlay"><span class="gal-label">Jardín residencial · GBA</span></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-bg g2" style="height:100%">
+        <svg class="gal-grass-icon" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="#2d6a22" stroke-width="1.5"><rect x="12" y="12" width="40" height="40" rx="2"/></svg>
+      </div>
+      <div class="gal-overlay"><span class="gal-label">Empresa · Tigre</span></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-bg g3" style="height:100%">
+        <svg class="gal-grass-icon" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="1.5"><circle cx="32" cy="32" r="18"/></svg>
+      </div>
+      <div class="gal-overlay"><span class="gal-label">Club deportivo</span></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-bg g4" style="height:100%">
+        <svg class="gal-grass-icon" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="#2d6a22" stroke-width="1.5"><path d="M10 50 Q22 28 32 38 Q42 18 54 30"/></svg>
+      </div>
+      <div class="gal-overlay"><span class="gal-label">Parque · San Isidro</span></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-bg g5" style="height:100%">
+        <svg class="gal-grass-icon" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="1.5"><path d="M12 52 Q24 24 36 32 Q46 14 56 26"/></svg>
+      </div>
+      <div class="gal-overlay"><span class="gal-label">Proyecto paisajista</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="contacto-bg-deco"></div>
+  <div class="contacto-inner">
+    <p class="section-eyebrow">Contacto</p>
+    <h2 class="section-title">¿Necesitás césped<br>en cantidad?</h2>
+    <p class="section-sub" style="margin-top:0.75rem">Consultanos por precios, disponibilidad y logística. Respondemos rápido por WhatsApp.</p>
+    <div class="contacto-cards">
+      <div class="contacto-card">
+        <div class="cc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#72b85a" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h4>WhatsApp</h4>
+        <p>11 5452-8306<br>Respuesta inmediata</p>
+      </div>
+      <div class="contacto-card">
+        <div class="cc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#72b85a" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <h4>Instagram</h4>
+        <p>@bemverde.cesped<br>Seguinos para ver novedades</p>
+      </div>
+      <div class="contacto-card">
+        <div class="cc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#72b85a" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Zona de entrega</h4>
+        <p>GBA y alrededores<br>Consultar por interior</p>
+      </div>
+    </div>
+    <a class="wa-big" href="https://wa.me/5491154528306?text=Hola!%20Quiero%20consultar%20precios%20mayoristas%20de%20c%C3%A9sped%20en%20panes" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hablar por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Bem Verde Césped</div>
+  <p>© 2025 · Venta mayorista de césped natural · GBA, Argentina</p>
+  <a class="footer-ig" href="https://www.instagram.com/bemverde.cesped/" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    @bemverde.cesped
+  </a>
+</footer>
+
+</body>
+</html>
